@@ -36,7 +36,7 @@ function setup() {
     C: 261.6256,
     D: 293.6648,
     E: 329.6276,
-    F: 349.2282
+    F: 349.2282,
     G: 391.9954
   };
   // configure neural network options
@@ -130,5 +130,14 @@ function canvasClicked() {
 }
 
 function gotResults(error, results) {
+  if(error) {
+    console.error(error);
+     else {
+       let label = results[0].label;
+       drawNote(label, "white", "blue");
+       wave.freq(notes[label]);
+       env.play();
 
+     }
+  }
 }
